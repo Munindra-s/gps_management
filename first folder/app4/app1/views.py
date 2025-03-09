@@ -39,6 +39,7 @@ def list_customer(request):
         data=add_customer.objects.all()
         context={'sent':data}
         return render(request,'list_customer.html',context)
+
 @login_required
 def add_enquiries(request):
         if request.method =='POST':
@@ -116,13 +117,14 @@ def add_insurancesss(request):
                 start_date=request.POST['start_date']
                 end_date=request.POST['end_date']
                 daa = add_insurance.objects.create(name=name,customer_id=customer_id,phone=phone,registration_no=registration_no,vehicle_model=vehicle_model,year=year,policy_no=policy_no,insurance_name=insurance_name,vehicle_type=vehicle_type,expiry_date=expiry_date,start_date=start_date,end_date=end_date)
-
-        return render(request,'add_insurance.html')
+        
+        data11=add_customer.objects.all()
+        context={'data':data11}
+        return render(request,'add_insurance.html',context)
 
 def list_insurance(request):
         part=add_insurance.objects.all()
         concept={'sent':part}
         return render(request,'list_insurance.html',concept)
-
 
 

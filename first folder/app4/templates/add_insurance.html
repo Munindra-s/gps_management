@@ -226,27 +226,19 @@
 							<!-- Customer Information Form -->
 
 <!-- Customer Id -->
-<div class="form-group">
-	<label class="col-md-3 control-label">Customer ID</label>
-	<div class="col-md-9">
-	  <input type="text" name="customer_id" class="form-control" placeholder="Customer ID">
-	</div>
-  </div>
-  
+
   <!-- Name -->
+  
   <div class="form-group">
-	<label class="col-md-3 control-label">Name</label>
-	<div class="col-md-9">
-	  <input type="text" class="form-control" name="name" placeholder="Name" required>
-	</div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-3 control-label">Phone</label>
+    <label class="col-md-3 control-label">Customer Details</label>
     <div class="col-md-9">
-        <input type="number" class="form-control" placeholder="Phone No." id="phone" name="phone" required>
-        <span id="phoneError"></span>
-        {% comment %} <p class="text-danger text-right xsmall">Phone</p> {% endcomment %}
+        <input type="text" class="form-control" placeholder="Details" id="phone" name="phone" required>
+		<input type="text" id="search" placeholder="Search here.." class="form-control" style="width:500px;" autocomplete="off" />
+		<div id="autocomplete-list" class="autocomplete-items"></div>
+
+
     </div>
+  </div>
   
   <!-- Registration No -->
   <div class="form-group">
@@ -511,6 +503,46 @@
 			}
 		});
 	</script>
+
+	<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sample data (you will replace this with Django dynamic data)
+            var customerData = [
+                {% for item in data %}
+                    "{{item.name}} --- {{item.phone}}",
+                {% endfor %}
+            ];
+
+            var input = document.getElementById("search");
+            var autocompleteList = document.getElementById("autocomplete-list");
+
+            input.addEventListener("input", function () {
+                var val = this.value;
+                autocompleteList.innerHTML = ""; // Clear previous results
+
+                if (!val) return; // Stop if input is empty
+
+                customerData.forEach(function (item) {
+                    if (item.toLowerCase().includes(val.toLowerCase())) {
+                        var suggestion = document.createElement("div");
+                        suggestion.textContent = item;
+                        suggestion.addEventListener("click", function () {
+                            input.value = item; // Set input value on selection
+                            autocompleteList.innerHTML = ""; // Hide dropdown
+                        });
+                        autocompleteList.appendChild(suggestion);
+                    }
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!input.contains(e.target) && !autocompleteList.contains(e.target)) {
+                    autocompleteList.innerHTML = ""; // Hide dropdown when clicking outside
+                }
+            });
+        });
+    </script>
+
 	
 </body>
 </html>
