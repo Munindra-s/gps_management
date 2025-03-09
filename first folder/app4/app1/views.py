@@ -15,7 +15,7 @@ def add_cust(request):
               address=request.POST['address']
               vehicle_no=request.POST['vehicle_no']
               insurance_id=request.POST['insurance id']
-              date=request.POST['date']
+              date=request.POST['date'] 
               vehicle_type=request.POST['vehicle type']
               policy_type=request.POST['policy type']
               policy_amount=request.POST['policy Amount']
@@ -65,14 +65,21 @@ def list_enquiry(request):
 @login_required
 def add_gps_management(request):
         if request.method =='POST':
-                vehicle_id=request.POST['vehicle_id']
+                Gps_device_IMEI_no=request.POST['Gps_device_IMEI_no']
+                registration_no=request.POST['registration_no']
+                install_date=request.POST['install_date']
+                renew_date=request.POST['renew_date']
+                reminder_date=request.POST['reminder_date']
                 vehicle_model=request.POST['vehicle_model']
-                vehicle_registration_no=request.POST['vehicle_registration_no']
                 vehicle_type=request.POST['vehicle_type']
                 vehicle_make=request.POST['vehicle_make']
-                add_gps.objects.create(vehicle_id=vehicle_id,vehicle_model=vehicle_model,vehicle_registration_no=vehicle_registration_no,vehicle_type=vehicle_type,vehicle_make=vehicle_make)
+                add_gps.objects.create(Gps_device_IMEI_no=Gps_device_IMEI_no,registration_no=registration_no,vehicle_model=vehicle_model,vehicle_type=vehicle_type,vehicle_make=vehicle_make,install_date=install_date,reminder_date=reminder_date,renew_date=renew_date)
+        data=add_customer.objects.all()
+        context={'sent':data}
 
-        return render(request,'add_gps.html') 
+        return render(request,'add_gps.html',context) 
+
+
 def list_gps_management(request):
         content=add_gps.objects.all()
         context={'sent':content}
@@ -121,8 +128,16 @@ def add_insurancesss(request):
 
 def list_insurance(request):
         part=add_insurance.objects.all()
-        concept={'sent':part}
-        return render(request,'list_insurance.html',concept)
+        context={'sent':part}
+        return render(request,'list_insurance.html',context)
+
+# def town_autocomplete(request):
+#     data = add_gps.objects.all()
+#     context = {'sent':data}
+#     # Add_Insurance;.objects.create(invoice_number = 1, customer_name = "Test", date = "25-10-2001", total_amount = 1000)
+
+#     return render(request,'add_gps.html', context) 
+
 
 
 

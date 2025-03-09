@@ -36,6 +36,26 @@
 
 	<!-- Match Media polyfill for IE9 -->
 	<!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]--> 
+	<style>
+        /* Style the autocomplete dropdown */
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #fff;
+            z-index: 99;
+            width: 500px;
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-items div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 
 	
 </head>
@@ -223,19 +243,49 @@
 							{% csrf_token %}
 							 <!-- form horizontal acts as a row -->
 							<!-- Customer Id -->
+							<h1>Autocomplete Dropdown</h1>
+
+							<!--<form action="">
+								<input type="text" id="search" placeholder="Search here.." class="form-control" style="width:500px;" autocomplete="off" />
+								<div id="autocomplete-list" class="autocomplete-items"></div>
+							</form>-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">customer details</label>
+								<div class="col-md-9">
+									<input type="text" name="customer_details" class="form-control" placeholder="imei no" required >
+									<input type="text" id="search" placeholder="Search here.." class="form-control" style="width:500px;" autocomplete="off" />
+                                    <div id="autocomplete-list" class="autocomplete-items"></div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-md-3 control-label">Gps device IMEI no</label>
 								<div class="col-md-9">
-									<input type="number" name="vehicle_id" class="form-control" placeholder="cutomerid" >
-								</div>
-								
+									<input type="number" name="Gps_device_IMEI_no" class="form-control" placeholder="imei no" required >
 							</div>
-							<!-- Name -->
+							
 							<div class="form-group">
-								<label class="col-md-3 control-label">vehicle registration no</label>
+								<label class="col-md-3 control-label">registration no</label>
 								<div class="col-md-9">
-									<input type="number" class="form-control" name="vehicle_registration_no" placeholder="Name" required>
-								</div>
+									<input type="text" name="registration_no" class="form-control" placeholder="no" required >
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">install date</label>
+								<div class="col-md-9">
+									<input type="date" name="install_date" class="form-control" placeholder="date" >
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">renew date </label>
+								<div class="col-md-9">
+									<input type="date" name="renew_date" class="form-control" placeholder="cutomerid" >
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Reminder date</label>
+								<div class="col-md-9">
+									<input type="date" name="reminder_date" class="form-control" placeholder="cutomerid" >
+							</div>
+								
+								
 								
 							</div>
 							<div class="form-group">
@@ -266,20 +316,15 @@
 									</select>
 								</div>
 							</div>
+							<div class="clearfix center">
+								<button class="btn btn-primary mr5" type="submit" id="submitButton">Submit</button>
+							</div>
                             
 
 							
 							
 							</div>
-							
-
-							
-							
-							
-							
-							
-                           
-                            	<div class="clearfix center">
+						                         
 								    
 							</div>
 							
@@ -421,6 +466,7 @@
 
 
 	<script>
+		
 		// Example list of existing phone numbers (this can come from a database)
 		const existingPhoneNumbers = [
 			{% for num in phone %}
@@ -459,6 +505,44 @@
 				}
 			}
 		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+            // Sample data (you will replace this with Django dynamic data)
+            var customerData = [
+                {% for item in sent %}
+                    "{{ item.name}} --- {{item.phone}}",
+                {% endfor %}
+            ];
+
+            var input = document.getElementById("search");
+            var autocompleteList = document.getElementById("autocomplete-list");
+
+            input.addEventListener("input", function () {
+                var val = this.value;
+                autocompleteList.innerHTML = ""; // Clear previous results
+
+                if (!val) return; // Stop if input is empty
+
+                customerData.forEach(function (item) {
+                    if (item.toLowerCase().includes(val.toLowerCase())) {
+                        var suggestion = document.createElement("div");
+                        suggestion.textContent = item;
+                        suggestion.addEventListener("click", function () {
+                            input.value = item; // Set input value on selection
+                            autocompleteList.innerHTML = ""; // Hide dropdown
+                        });
+                        autocompleteList.appendChild(suggestion);
+                    }
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!input.contains(e.target) && !autocompleteList.contains(e.target)) {
+                    autocompleteList.innerHTML = ""; // Hide dropdown when clicking outside
+                }
+            });
+        });
 	</script>
 	
 </body>

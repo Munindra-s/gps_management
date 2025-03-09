@@ -11,6 +11,7 @@ urlpatterns =[
     path('sign_out',views.sign_out,name='sign_out'),
     path('auto/',views.city_autocomplete,name='auto'), 
     path('insurance/',views.add_insurancesss,name='insurance'),
-    path('path_insurance/',views.list_insurance,name='path_insurance')
+    path('path_insurance/',views.list_insurance,name='path_insurance'),
+    # path('gps/',views.town_autocomplete,name='gps')
     
 ]

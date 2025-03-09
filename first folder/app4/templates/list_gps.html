@@ -230,14 +230,35 @@
 											<thead>
 												<tr>
 													<th>
-														vehicle id
+														Gps_device_IMEI_no
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+														<th>
+															registration_no
+															<div class="th">
+																<i class="fa fa-caret-up icon-up"></i>
+																<i class="fa fa-caret-down icon-down"></i>
+															</div>
+														</th>
+														<th>
+															install_date
+															<div class="th">
+																<i class="fa fa-caret-up icon-up"></i>
+																<i class="fa fa-caret-down icon-down"></i>
+															</div>
+														</th>
+													</th>
+													<th>
+														renew date
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														vehicle registration no
+														Reminder date
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
@@ -271,8 +292,11 @@
 											<tbody>
 												{% for item in sent  %}
 												<tr>
-													<td>{{item.vehicle_id}}</td>
-													<td>{{item.vehicle_registration_no}}</td>
+													<td>{{item.Gps_device_IMEI_no}}</td>
+													<td>{{item.registration_no}}</td>
+													<td>{{item.install_date}}</td>
+													<td>{{item.renew_date}}</td>
+													<td>{{item.reminder_date}}</td>
 													<td>{{item.vehicle_model}}</td>
 													<td>{{item.vehicle_make}}</td>
 													<td>{{item.vehicle_type}}</td>

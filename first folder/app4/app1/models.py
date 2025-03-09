@@ -33,8 +33,11 @@ class add_enquiry(models.Model):
 
 
 class add_gps(models.Model):
-    vehicle_id=models.CharField( max_length=50)
-    vehicle_registration_no=models.IntegerField()
+    Gps_device_IMEI_no=models.IntegerField(null=True)
+    install_date=models.DateField( auto_now=False, auto_now_add=False,null=True)
+    renew_date=models.DateField( auto_now=False, auto_now_add=False,null=True)
+    reminder_date=models.DateField( auto_now=False, auto_now_add=False,null=True)
+    registration_no=models.CharField( max_length=50)
     vehicle_model=models.DateField( auto_now=False, auto_now_add=False)
     vehicle_make=models.DateField( auto_now=False, auto_now_add=False)
     vehicle_type=models.CharField( max_length=50)
