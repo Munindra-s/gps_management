@@ -107,95 +107,27 @@
 					<li>
 						<a href="javascript:;">
 							<i class="icon ion-md-people"></i>
-							<span class="text">insurance Management</span>
+							<span class="text">Insurance Management</span>
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add insurance</a></li>
-							<li><a href="#}">List insurance</a></li>
+							<li><a href="{% url 'add_enquiry' %}">Add Insurance</a></li>
+							<li><a href="{% url 'list_enquiry' %}">List Insurance</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
+							<i class="icon ion-md-contact"></i>
+							<span class="text">Enquiry Management</span>
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="}">Add Employee</a></li>
-							<li><a href="">List Employee</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Material</a></li>
-							<li><a href="#">List Material</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="{% url "addmaterial" %}">Add Material</a></li> {% endcomment %}
-							<li><a href="#">List Inward</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="{#">Add Product</a></li>
-							<li><a href="#">List Product</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Category</a></li>
-							<li><a href="#">List Category</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Cost</a></li>
-							<li><a href="#">List Cost</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Bill</a></li>
-							<li><a href="#">List Bill</a></li>
-							<li><a href="#">List Quotation</a></li>
-							<li><a href="#">List Estimation</a></li>
+							<li><a href="{% url 'add_enquiry' %}">Add Enquiry</a></li>
+							<li><a href="{% url 'list_enquiry' %}">List Enquiry</a></li>
+							
 						</ul>
 					</li>
 
-					
 					
 				</ul> <!-- #end navigation -->
 			</nav>
@@ -208,7 +140,7 @@
 		<!-- Data Table -->
 		<div class="col-md-11">
 			<div class="panel panel-lined table-responsive panel-hovered mb20 data-table" style="padding-bottom: 20px">
-				<div class="panel-heading">insurance List</div>
+				<div class="panel-heading">Customer List</div>
 				<div class="panel-body">
 					<div class="small text-bold left mt5">
 						Show&nbsp;
@@ -230,35 +162,35 @@
 											<thead>
 												<tr>
 													<th>
-														Customer ID
+														insurance id 
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														Customer Name
+														Name
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														Phone
+														phone
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														registration_no
+														registration no
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														vehicle_model
+														vehicle model
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
@@ -272,65 +204,60 @@
 														</div>
 													</th>
 													<th>
-														policy_no
+														policy no
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														insurance_name
+														vehicle type
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														expiry_date
+														expiry date 
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														vehicle_type
+														start date
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														start_date
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th>
-													<th>
-														end_date
+														end date
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													
+													
 												</tr>
 											</thead>
 											<tbody>
 												{% for item in sent  %}
 												<tr>
-													<td>{{item.customer_id}}</td>
+													<td>{{item.insurance_id}}</td>
 													<td>{{item.name}}</td>
-													<td>{{item.phone}}</td>
+                                                    <td>{{item.phone}}</td>
 													<td>{{item.registration_no}}</td>
 													<td>{{item.vehicle_model}}</td>
 													<td>{{item.year}}</td>
 													<td>{{item.policy_no}}</td>
-													<td>{{item.insurance_name}}</td>
-													<td>{{item.expiry_date}}</td>
 													<td>{{item.vehicle_type}}</td>
-                                                    <td>{{item.start_date}}</td>
+													<td>{{item.expiry_date}}</td>
+													<td>{{item.start_date}}</td>
 													<td>{{item.end_date}}</td>
+													
+													
 													
 													
 													

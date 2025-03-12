@@ -1,33 +1,27 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
-from app1.models import add_customer,add_enquiry,add_gps,add_insurance
+from app1.models import customer_master,enquiry_details,add_gps,customer_details,insurance_master,insurance_details
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 
 
 # Create your views here.
-def add_cust(request):
+def add_customer(request):
         if request.method =='POST':
               name=request.POST['name']
               customer=request.POST['customer_id']
               phone=request.POST['phone']
               email=request.POST['email']
               address=request.POST['address']
-              vehicle_no=request.POST['vehicle_no']
-              insurance_id=request.POST['insurance id']
-              date=request.POST['date'] 
-              vehicle_type=request.POST['vehicle type']
-              policy_type=request.POST['policy type']
-              policy_amount=request.POST['policy Amount']
-              start_date=request.POST['insurance Start Date']
-              end_date=request.POST['insurance End Date']
-              reminder_date=request.POST['reminder Date']
-              add_customer.objects.create(name=name,customer_id=customer,phone=phone,email=email,address=address,vehicle_no=vehicle_no,insurance_id=insurance_id,date=date,vehicle_type=vehicle_type,policy_type=policy_type,policy_amount=policy_amount,insurance_start_date=start_date,insurance_end_date=end_date,reminder_date=reminder_date)     
+              
+              customer_master.objects.create(name=name,customer_id=customer,phone=phone,email=email,address=address,)     
               return redirect("add_customer")
-        last_customer = add_customer.objects.order_by('-customer_id').first()
+        last_customer = customer_master.objects.order_by('-customer_id').first()
         if last_customer:
             last_id = int(last_customer.customer_id[4:])  # Extract the numeric part
             new_id = f"SSDC{last_id + 1:04d}"
+            iiii = f"SSDC{last_id + 1:04d}"
+            print(iiii)
             print('*****',new_id)
         else:
             new_id = "SSDC0001"
@@ -36,30 +30,52 @@ def add_cust(request):
         return render(request,'add_customer.html',context)
 
 def list_customer(request):
-        data=add_customer.objects.all()
+        data=customer_master.objects.all()
         context={'sent':data}
         return render(request,'list_customer.html',context)
+
+def add_details(request):
+       if request.method =='POST':
+              name=request.POST['name']
+              customer=request.POST['customer_id']
+              phone=request.POST['phone']
+              email=request.POST['email']
+              address=request.POST['address']
+              customer_details.objects.create(name=name,customer_id=customer,phone=phone,email=email,address=address,)   
+              
+              
 @login_required
 def add_enquiries(request):
         if request.method =='POST':
                 name=request.POST['name']
-                customer=request.POST['customer id']
+                enquiry_id=request.POST['enquiry_id']
                 phone=request.POST['phone']
-                registration_no=request.POST['registration no']
-                vehicle_model=request.POST['vehicle model']
-                manufacturing_year=request.POST['manufacturing year']
-                previous_policy_no=request.POST['previous policy no']
-                insurance_name=request.POST['insurance name']
-                vehicle_type=request.POST['vehicle type']
-                expiry_date=request.POST['expiry date']
-                start_date=request.POST['star date']
+                vehicle_no=request.POST['vehicle_no']
+                reference_of_enquiry=request.POST['reference_of_enquiry']
+                vehicle_model=request.POST['vehicle_model']
+                manufacturing_year=request.POST['manufacturing_year']
+                previous_policy_no=request.POST['previous_policy_no']
+                insurance_name=request.POST['insurance_name']
+                vehicle_type=request.POST['vehicle_type']
+                expiry_date=request.POST['expiry_date']
+                start_date=request.POST['start_date']
                 end_date=request.POST['end_date']
-                add_enquiry.objects.create(name=name,customer_id=customer,phone=phone,registration_no=registration_no,vehicle_model=vehicle_model,manufacturing_year=manufacturing_year,previous_policy_no=previous_policy_no,insurance_name=insurance_name,vehicle_type=vehicle_type,expiry_date=expiry_date,start_date=start_date,end_date=end_date)
-
-                return render(request,'add_enquiry.html')
-        return render(request,'add_enquiry.html')
+                enquiry_details.objects.create(name=name,enquiry_id=enquiry_id,phone=phone,vehicle_no=vehicle_no,reference_of_enquiry=reference_of_enquiry,vehicle_model=vehicle_model,manufacturing_year=manufacturing_year,previous_policy_no=previous_policy_no,insurance_name=insurance_name,vehicle_type=vehicle_type,expiry_date=expiry_date,start_date=start_date,end_date=end_date)
+                return redirect('list_enquiry')
+        last_enquiry = enquiry_details.objects.order_by('-enquiry_id').first()
+        if last_enquiry:
+            last_id = int(last_enquiry.enquiry_id[3:])  # Extract the numeric part
+            new_id = f"ENQ{last_id + 1:04d}"
+            print('*****',new_id)
+        else:
+            new_id = "ENQ0001"
+        context={'new_id':new_id}
+               
+        return render(request,'add_enquiry.html',context)
+        
+        
 def list_enquiry(request):
-        value=add_enquiry.objects.all()
+        value=enquiry_details.objects.all()
         context={'sent':value}
         return render(request,'list_enquiry.html',context)
 @login_required
@@ -74,7 +90,7 @@ def add_gps_management(request):
                 vehicle_type=request.POST['vehicle_type']
                 vehicle_make=request.POST['vehicle_make']
                 add_gps.objects.create(Gps_device_IMEI_no=Gps_device_IMEI_no,registration_no=registration_no,vehicle_model=vehicle_model,vehicle_type=vehicle_type,vehicle_make=vehicle_make,install_date=install_date,reminder_date=reminder_date,renew_date=renew_date)
-        data=add_customer.objects.all()
+        data=customer_master.objects.all()
         context={'sent':data}
 
         return render(request,'add_gps.html',context) 
@@ -108,28 +124,53 @@ def city_autocomplete(request):
 
     return render(request,'render.html', context) 
 
-def add_insurancesss(request):
+def add_insurance(request):
+       
         if request.method =='POST':
-                name=request.POST['name']
-                customer_id=request.POST['customer_id']
-                phone=request.POST['phone']
+
+                customer_details=request.POST['customer_details']
+                print(customer_details)
+                name, phone = customer_details.split(' --- ')
+
+                
+                
+                insurance_id=request.POST['insurance_id']
                 registration_no = request.POST['registration_no']
                 vehicle_model=request.POST['vehicle_model']
                 year=request.POST['year']
                 policy_no=request.POST['policy_no']
-                insurance_name=request.POST['insurance_name']
+                expiry_date=request.POST['expiry_date']
                 vehicle_type=request.POST['vehicle_type']
-                expiry_date = request.POST['expiry_date']
                 start_date=request.POST['start_date']
                 end_date=request.POST['end_date']
-                daa = add_insurance.objects.create(name=name,customer_id=customer_id,phone=phone,registration_no=registration_no,vehicle_model=vehicle_model,year=year,policy_no=policy_no,insurance_name=insurance_name,vehicle_type=vehicle_type,expiry_date=expiry_date,start_date=start_date,end_date=end_date)
+                daa =insurance_master.objects.create(name=name,insurance_id=insurance_id,registration_no=registration_no,vehicle_model=vehicle_model,year=year,)
+                insurance_details.objects.create(insurance_id=insurance_id,name=name,phone=phone,registration_no=registration_no,vehicle_model=vehicle_model,expiry_date=expiry_date,year=year,policy_no=policy_no,vehicle_type=vehicle_type,start_date=start_date,end_date=end_date)
+                return redirect('path_insurance') 
 
-        return render(request,'add_insurance.html')
+                 
+        last_insurance = insurance_details.objects.order_by('-insurance_id').first()
+        if last_insurance:
+            last_id = int(last_insurance.insurance_id[3:])  # Extract the numeric part
+            new_id = f"INS{last_id + 1:04d}"
+            print('*****',new_id)
+            
+        else:
+            new_id = "INS0001"
+        data=customer_master.objects.all()    
+        context={'new_id':new_id,'sent':data}
+              
+        return render(request,'add_insurance.html',context)
+     
 
 def list_insurance(request):
-        part=add_insurance.objects.all()
+        part=insurance_details.objects.filter(status=1)
         context={'sent':part}
-        return render(request,'list_insurance.html',context)
+        return render(request,'list_detail.html',context)
+
+
+       
+
+
 
 # def town_autocomplete(request):
 #     data = add_gps.objects.all()

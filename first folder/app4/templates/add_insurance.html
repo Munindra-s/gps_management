@@ -36,7 +36,26 @@
 
 	<!-- Match Media polyfill for IE9 -->
 	<!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]--> 
-
+	<style>
+        /* Style the autocomplete dropdown */
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #fff;
+            z-index: 99;
+            width: 500px;
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-items div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 	
 </head>
 <body id="app" class="app off-canvas">
@@ -111,91 +130,21 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add insurance</a></li>
-							<li><a href="#">List insurance</a></li>
+							<li><a href="{% url 'insurance'%}">Add insurance</a></li>
+							<li><a href="{% url 'path_insurance'%}">List insurance</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
+							<i class="icon ion-md-people"></i>
+							<span class="text">Enquiry Management</span>
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Employee</a></li>
-							<li><a href="#">List Employee</a></li>
+							<li><a href="{% url 'add_enquiry' %}">Add Enquiry</a></li>
+							<li><a href="{% url 'list_enquiry' %}">List Enquiry</a></li>
 						</ul>
 					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Material</a></li>
-							<li><a href="#">List Material</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="{% url "" %}">Add Material</a></li> {% endcomment %}
-							<li><a href="#">List Inward</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Product</a></li>
-							<li><a href="#">List Product</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Category</a></li>
-							<li><a href="#">List Category</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Cost</a></li>
-							<li><a href="#">List Cost</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Bill</a></li>
-							<li><a href="#">List Bill</a></li>
-							<li><a href="#">List Quotation</a></li>
-							<li><a href="#">List Estimation</a></li>
-						</ul>
-					</li>
-
-					
 					
 				</ul> <!-- #end navigation -->
 			</nav>
@@ -227,9 +176,16 @@
 
 <!-- Customer Id -->
 <div class="form-group">
-	<label class="col-md-3 control-label">Customer ID</label>
+	<label class="col-md-3 control-label">customer details</label>
 	<div class="col-md-9">
-	  <input type="text" name="customer_id" class="form-control" placeholder="Customer ID">
+		<input type="text" id="search" placeholder="Search here.." class="form-control" name="customer_details" style="width:500px;" autocomplete="off" />
+		<div id="autocomplete-list" class="autocomplete-items"></div>
+    </div>
+</div>
+<div class="form-group">
+	<label class="col-md-3 control-label">insurance ID</label>
+	<div class="col-md-9">
+	  <input type="text" readonly name="insurance_id" value = "{{new_id}}" class="form-control" placeholder="insurance ID">
 	</div>
   </div>
   
@@ -237,16 +193,19 @@
   <div class="form-group">
 	<label class="col-md-3 control-label">Name</label>
 	<div class="col-md-9">
-	  <input type="text" class="form-control" name="name" placeholder="Name" required>
+	  <input type="text" class="form-control" name="name" placeholder="hsfdhshame" required>
 	</div>
   </div>
   <div class="form-group">
-    <label class="col-md-3 control-label">Phone</label>
-    <div class="col-md-9">
-        <input type="number" class="form-control" placeholder="Phone No." id="phone" name="phone" required>
-        <span id="phoneError"></span>
-        {% comment %} <p class="text-danger text-right xsmall">Phone</p> {% endcomment %}
-    </div>
+	<label class="col-md-3 control-label">Phone</label>
+	<div class="col-md-9">
+		<input type="number" class="form-control" placeholder="Phone No." id="phone" name="phone" required>
+		<span id="phoneError"></span>
+		{% comment %} <p class="text-danger text-right xsmall">Phone</p> {% endcomment %}
+	</div>
+
+  </div>
+  
   
   <!-- Registration No -->
   <div class="form-group">
@@ -281,12 +240,7 @@
   </div>
   
   <!-- Insurance Name -->
-  <div class="form-group">
-	<label class="col-md-3 control-label">Insurance Name</label>
-	<div class="col-md-9">
-	  <input type="text" class="form-control" placeholder="Insurance Name" name="insurance_name" required>
-	</div>
-  </div>
+  
   
   <!-- Vehicle Type -->
   <div class="form-group">
@@ -304,7 +258,7 @@
   
   <!-- Dates -->
   <div class="form-group">
-	<label class="col-md-3 control-label">Date</label>
+	<label class="col-md-3 control-label">expiry_date</label>
 	<div class="col-md-3">
 	  <input type="date" name="expiry_date" class="form-control" required>
 	</div>
@@ -323,6 +277,7 @@
 	  <input type="date" name="end_date" class="form-control" required>
 	</div>
   </div>
+ 
   
   <!-- Submit Button -->
   <div class="clearfix center">
@@ -510,6 +465,44 @@
 				}
 			}
 		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+            // Sample data (you will replace this with Django dynamic data)
+            var customerData = [
+                {% for item in sent %}
+                    "{{ item.name}} --- {{item.phone}}",
+                {% endfor %}
+            ];
+
+            var input = document.getElementById("search");
+            var autocompleteList = document.getElementById("autocomplete-list");
+
+            input.addEventListener("input", function () {
+                var val = this.value;
+                autocompleteList.innerHTML = ""; // Clear previous results
+
+                if (!val) return; // Stop if input is empty
+
+                customerData.forEach(function (item) {
+                    if (item.toLowerCase().includes(val.toLowerCase())) {
+                        var suggestion = document.createElement("div");
+                        suggestion.textContent = item;
+                        suggestion.addEventListener("click", function () {
+                            input.value = item; // Set input value on selection
+                            autocompleteList.innerHTML = ""; // Hide dropdown
+                        });
+                        autocompleteList.appendChild(suggestion);
+                    }
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!input.contains(e.target) && !autocompleteList.contains(e.target)) {
+                    autocompleteList.innerHTML = ""; // Hide dropdown when clicking outside
+                }
+            });
+        });
 	</script>
 	
 </body>

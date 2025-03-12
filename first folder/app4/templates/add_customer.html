@@ -146,7 +146,7 @@
 						<ul class="inner-drop list-unstyled">
 							{% comment %} <li><a href="{% url "" %}">Add Material</a></li> {% endcomment %}
 							<li><a href="{% url "insurance"%}">add insurance</a></li>
-							<li><a href="">List insurance</a></li>
+							<li><a href="">List insurance</a>list insurance</li>
 						</ul>
 					</li>
 					<li>
@@ -209,7 +209,7 @@
 			<!-- col-left -->
 			<div class="col-sm-12 col-md-11">
 				<div class="panel panel-default panel-hovered panel-stacked mb30">
-					<div class="panel-heading">customer_management</div>
+					<div class="panel-heading">customer management</div>
 					{% if messages %}
 
         {% for message in messages %}
@@ -266,78 +266,7 @@
 									<textarea rows="3" class="form-control resize-v" placeholder="Address" name="address" required></textarea>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Insurance ID</label>
-								<div class="col-md-9">
-									<input type="number" class="form-control" name="insurance id" placeholder="Insurance ID" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Vehicle No.</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" name="vehicle_no" placeholder="Vehicle no." required>
-								</div>
-							</div>
 							
-							
-
-							<div class="form-group">
-								<label class="col-md-3 control-label">create Date</label>
-								<div class="col-md-9">
-									<input type="date" class="form-control" name="date" placeholder="date" required>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label">Vehicle Type</label>
-								<div class="col-md-9">
-									<select class="form-control" name="vehicle type" required>
-										<option value="">Select Vehicle Type</option>
-										<option value="Own vehicle">Own vehicle</option>
-										<option value="Travel vehicle">Travel vehicle</option>
-										
-										<!-- Add more options as needed -->
-									</select>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label">Policy Type</label>
-								<div class="col-md-9">
-									<select class="form-control" name="policy type" required>
-										<option value="">Select Policy Type</option>
-										<option value="TP">TP</option>
-										<option value="OP">OP</option>
-										
-										<!-- Add more options as needed -->
-									</select>
-								</div>
-							</div>
-						
-<div class="form-group">
-<label class="col-md-3 control-label">Policy Amount</label>
-<div class="col-md-9">
-<input type="number" name="policy Amount" class="form-control" placeholder="policyAmount" >
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-3 control-label">Insurance Start Date</label>
-<div class="col-md-9">
-<input type="date" name="insurance Start Date" class="form-control" placeholder="insuranceStartDate" >
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-3 control-label">Insurance End Date</label>
-<div class="col-md-9">
-<input type="date" name="insurance End Date" class="form-control" placeholder="insuranceEndDate" >
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-3 control-label">Reminder Date</label>
-<div class="col-md-9">
-<input type="date" Name="reminder Date" class="form-control" placeholder="reminderDate" >
-</div>
-
 							<div class="clearfix center">
 								<button class="btn btn-primary mr5" type="submit" id="submitButton">Submit</button>
 							</div>

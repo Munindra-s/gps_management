@@ -111,8 +111,8 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add customer</a></li>
-							<li><a href="#}">List customer</a></li>
+							<li><a href="{% url "add_customer" %}">Add customer</a></li>
+							<li><a href="{% url "list_customer" %}">List customer</a></li>
 						</ul>
 					</li>
 					<li>
@@ -264,81 +264,6 @@
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
-													<th>
-														insurance id
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th>
-													<th>
-														vehicle no
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th>
-													<th>
-														 date
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th>
-													<th>
-														vehicle type
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th><th>
-														policy type
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th><th>
-														policy Amount
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th><th>
-														insuranceStartDate
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th><th>
-														insuranceEndDate
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th><th>
-														insuranceEndDate
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th>
-
-
-
-
-
-
-
-
-
-													
-													<th>
-														reminder date
-														<div class="th">
-															<i class="fa fa-caret-up icon-up"></i>
-															<i class="fa fa-caret-down icon-down"></i>
-														</div>
-													</th>
 													
 												</tr>
 											</thead>
@@ -348,18 +273,9 @@
 													<td>{{item.customer_id}}</td>
 													<td>{{item.name}}</td>
 													<td>{{item.phone}}</td>
-													<td>{{item.Email}}</td>
+													<td>{{item.email}}</td>
 													<td>{{item.address}}</td>
-													<td>{{item.insurance_id}}</td>
-													<td>{{item.vehicle_no}}</td>
-													<td>{{item.date}}</td>
-													<td>{{item.vehicle_type}}</td>
-													<td>{{item.policy_type}}</td>
-													<td>{{item.policy_Amount}}</td>
-													<td>{{item.insurance_start_date}}</td>
-													<td>{{item.insurance_end_date}}</td>
-													<td>{{item.reminder_date}}</td>
-													<td>{{item.policy_Amount}}</td>
+													
 													
 
 													
