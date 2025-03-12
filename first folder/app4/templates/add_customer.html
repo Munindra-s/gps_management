@@ -98,34 +98,19 @@
 							<span class="text">Dashboard</span>
 						</a>
 					</li>
-					{% comment %} <li>
-						<a>
-							<i class="icon ion-md-people"></i>
-							<span class="text">Insurance Management</span>
-						</a>
-					</li> {% endcomment %}
+					
 					<li>
 						<a href="javascript:;">
 							<i class="icon ion-md-people"></i>
-							<span class="text">customer Management</span>
+							<span class="text">Customer Management</span>
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Customer</a></li>
-							<li><a href="#">List Customer</a></li>
+							<li><a href="{% url 'customer' %}">Add Customer</a></li>
+							<li><a href="{% url 'list_customer' %}">List Customer</a></li>
 						</ul>
 					</li>
-					<li>
-						<a href="javascript:;">
-							<i class="icon ion-md-people"></i>
-							<span class="text">enquiry Management</span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Enquiry</a></li>
-							<li><a href="#">List Enquiry</a></li>
-						</ul>
-					</li>
+					
 					<li>
 						<a href="javascript:;">
 							<i class="icon ion-md-people"></i>
@@ -133,33 +118,12 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add gps</a></li>
-							<li><a href="#">List Gps</a></li>
+							<li><a href="{% url 'add_gps' %}">Add GPS</a></li>
+							<li><a href="{% url 'list_gps' %}">List GPS</a></li>
 						</ul>
 					</li>
-					<li>
-						<a href="javascript:;">
-							<i class="icon ion-md-cube"></i>
-							<span class="text">insurance Management</span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="#">Add Material</a></li> {% endcomment %}
-							<li><a href="#">Add insurance</a></li>
-							<li><a href="#">List insurance</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Product</a></li>
-							<li><a href="#">List Product</a></li>
-						</ul>
-					</li>
+					
+					
 					<li>
 						<a href="javascript:;">
 							<i class=""></i>

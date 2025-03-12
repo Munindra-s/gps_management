@@ -38,6 +38,28 @@
 	<!-- Match Media polyfill for IE9 -->
 	<!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]-->
 
+	<style>
+        /* Style the autocomplete dropdown */
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #fff;
+            z-index: 99;
+            width: 500px;
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-items div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+
+
 
 </head>
 
@@ -93,6 +115,9 @@
 
 
 				<!-- navigation -->
+
+
+
 				<ul class="list-unstyled clearfix nav-list mb15">
 					<li class="active">
 						<a href="#">
@@ -100,103 +125,32 @@
 							<span class="text">Dashboard</span>
 						</a>
 					</li>
-					{% comment %} <li>
-						<a>
-							<i class="icon ion-md-people"></i>
-							<span class="text">Insurance Management</span>
-						</a>
-					</li> {% endcomment %}
-					<li>
-						<a href="javascript:;">
-							<i class="icon ion-md-people"></i>
-							<span class="text">Gps Management</span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Gps</a></li>
-							<li><a href="#">List Gps</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class="icon ion-md-contact"></i>
-							<span class="text">Enquiry Gps Management</span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Employee</a></li>
-							<li><a href="#">List Employee</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Material</a></li>
-							<li><a href="#">List Material</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="#">Add Material</a></li> {% endcomment %}
-							<li><a href="#">List Inward</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Product</a></li>
-							<li><a href="#">List Product</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Category</a></li>
-							<li><a href="#">List Category</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Cost</a></li>
-							<li><a href="#">List Cost</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Bill</a></li>
-							<li><a href="#">List Bill</a></li>
-							<li><a href="#">List Quotation</a></li>
-							<li><a href="#">List Estimation</a></li>
-						</ul>
-					</li>
 
+					<li>
+						<a href="javascript:;">
+							<i class="icon ion-md-people"></i>
+							<span class="text">Customer Management</span>
+							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
+						</a>
+						<ul class="inner-drop list-unstyled">
+							<li><a href="{% url 'customer' %}">Add Customer</a></li>
+							<li><a href="{% url 'list_customer' %}">List Customer</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<a href="javascript:;">
+							<i class="icon ion-md-people"></i>
+							<span class="text">GPS Management</span>
+							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
+						</a>
+						<ul class="inner-drop list-unstyled">
+							<li><a href="{% url 'add_gps' %}">Add GPS</a></li>
+							<li><a href="{% url 'list_gps' %}">List GPS</a></li>
+						</ul>
+					</li>
+					
+					
 
 
 				</ul> <!-- #end navigation -->
@@ -210,7 +164,7 @@
 			<!-- col-left -->
 			<div class="col-sm-12 col-md-11">
 				<div class="panel panel-default panel-hovered panel-stacked mb30">
-					<div class="panel-heading">Gps_management</div>
+					<div class="panel-heading">GPS Management</div>
 					{% if messages %}
 
 					{% for message in messages %}
@@ -234,9 +188,13 @@
 							    </div>
 
 								<div class="form-group">
-									<label class="col-md-3 control-label">Customer Name</label>
+									<label class="col-md-3 control-label">Customer Details</label>
 									<div class="col-md-9">
-										 <input type="text" class="form-control" name="customer_name" placeholder="Name" required>
+										
+											<input type="text" id="search" name="customer_nam" placeholder="Enter Details" class="form-control" style="width:500px;" autocomplete="off" />
+											<div id="autocomplete-list" class="autocomplete-items"></div>
+										
+									
 									</div>
 								</div>	
 
@@ -285,7 +243,45 @@
 												<!-- Add more options as needed -->
 											</select>
 										</div>
-									</div>	
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">Installation Date</label>
+										<div class="col-md-9">
+											<input type="date" class="form-control" name="installation_date"
+												placeholder="Installation Date" required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label">Reminder Date</label>
+										<div class="col-md-9">
+											<input type="date" class="form-control" name="reminder_date"
+												placeholder="Reminder Date" required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label">Next Reminder Date</label>
+										<div class="col-md-9">
+											<input type="date" class="form-control" name="next_reminder_date"
+												placeholder="Next Reminder Date" required>
+
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Plan</label>
+										<div class="col-md-9">
+											<select class="form-control" name="plan" required>
+												<option value="">Select Plan Type</option>
+												<option value="yearly">Yearly</option>
+												<option value="life_time">Life Time</option>
+												
+										    </select>
+										</div>
+									</div>
+									
 										<br>
 
 
@@ -394,6 +390,7 @@
 	<script src="{% static 'scripts/app.js' %}"></script>
 	<script src="{% static 'scripts/index.init.js' %}"></script>
 
+	<!--
 	{% comment %}
 	<script>
 		// Example list of existing phone numbers (this can come from a database)
@@ -431,41 +428,41 @@
 
 			}
 		});
-	</script> {% endcomment %}
+	</script> {% endcomment %} -->
 
-
-	<script>
+    <script>
+		
 		// Example list of existing phone numbers (this can come from a database)
 		const existingPhoneNumbers = [
 			{% for num in phone %}
-		"{{num.Phone_No}}--{{num.Customer_Id}}--{{num.Customer_Name}}",
-			{% endfor %}
+			"{{num.Phone_No}}--{{num.Customer_Id}}--{{num.Customer_Name}}",
+			{% endfor %}  
 		];
 		const submitButton = document.getElementById("submitButton");
-
-
+	
+	
 		document.getElementById("phone").addEventListener("blur", function () {
 			let enteredPhone = this.value.trim(); // Get input value and remove extra spaces
 			let errorSpan = document.getElementById("phoneError");
-
+	
 			if (enteredPhone.length !== 10 || isNaN(enteredPhone)) {
 				errorSpan.textContent = "Enter a valid 10-digit phone number";
 				errorSpan.style.color = "red";
 				this.style.borderColor = "red";
 				submitButton.disabled = true;
 				{% comment %} alert("Enter a valid 10-digit phone number"); {% endcomment %}
-			}
+			} 
 			else {
 				// Check if the entered phone number exists in the array
 				let matchedPhone = existingPhoneNumbers.find(phone => phone.startsWith(enteredPhone));
-
+	
 				if (matchedPhone) {
-					errorSpan.textContent = `${matchedPhone} already exists!`;
+					errorSpan.textContent = ${matchedPhone} already exists!;
 					errorSpan.style.color = "red";
 					this.style.borderColor = "red";
 					submitButton.disabled = true;
-					alert(`${matchedPhone} already exists!`);
-				}
+					alert(${matchedPhone} already exists!);
+				} 
 				else {
 					errorSpan.textContent = "";
 					this.style.borderColor = "green";
@@ -474,6 +471,46 @@
 			}
 		});
 	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+            // Sample data (you will replace this with Django dynamic data)
+            var customerData = [
+                {% for item in sent  %}
+                    "{{ item.customer_name}} --- {{item.phone}}",
+                {% endfor %}
+            ];
+
+            var input = document.getElementById("search");
+            var autocompleteList = document.getElementById("autocomplete-list");
+
+            input.addEventListener("input", function () {
+                var val = this.value;
+                autocompleteList.innerHTML = ""; // Clear previous results
+
+                if (!val) return; // Stop if input is empty
+
+                customerData.forEach(function (item) {
+                    if (item.toLowerCase().includes(val.toLowerCase())) {
+                        var suggestion = document.createElement("div");
+                        suggestion.textContent = item;
+                        suggestion.addEventListener("click", function () {
+                            input.value = item; // Set input value on selection
+                            autocompleteList.innerHTML = ""; // Hide dropdown
+                        });
+                        autocompleteList.appendChild(suggestion);
+                    }
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!input.contains(e.target) && !autocompleteList.contains(e.target)) {
+                    autocompleteList.innerHTML = ""; // Hide dropdown when clicking outside
+                }
+            });
+        });
+	</script>
+	
+
 
 </body>
 

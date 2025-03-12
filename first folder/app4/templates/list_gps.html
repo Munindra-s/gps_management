@@ -103,7 +103,12 @@
 							<i class="icon ion-md-people"></i>
 							<span class="text">Customer Management</span>
 						</a>
+						<ul class="inner-drop list-unstyled">
+							<li><a href="{% url 'customer' %}">Add Customer</a></li>
+							<li><a href="{% url 'list_customer' %}">List Customer</a></li>
+						</ul>
 					</li> {% endcomment %}
+
 					<li>
 						<a href="javascript:;">
 							<i class="icon ion-md-people"></i>
@@ -111,90 +116,11 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Gps</a></li>
-							<li><a href="#">List Gps</a></li>
+							<li><a href="{% url 'add_gps' %}">Add Gps</a></li>
+							<li><a href="{% url 'list_gps' %}">List Gps</a></li>
 						</ul>
 					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Employee</a></li>
-							<li><a href="#">List Employee</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Material</a></li>
-							<li><a href="#">List Material</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="#">Add Material</a></li> {% endcomment %}
-							<li><a href="#">List Inward</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Product</a></li>
-							<li><a href="#">List Product</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Category</a></li>
-							<li><a href="#">List Category</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Cost</a></li>
-							<li><a href="#">List Cost</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<i class=""></i>
-							<span class="text"></span>
-							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
-						</a>
-						<ul class="inner-drop list-unstyled">
-							<li><a href="#">Add Bill</a></li>
-							<li><a href="#">List Bill</a></li>
-							<li><a href="#">List Quotation</a></li>
-							<li><a href="#">List Estimation</a></li>
-						</ul>
-					</li>
-
+					
 					
 					
 				</ul> <!-- #end navigation -->
@@ -282,6 +208,38 @@
 														</div>
 													</th>
 
+													<th>
+														Installation Date
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+													</th>
+
+													<th>
+														Reminder Date
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+													</th>
+
+													<th>
+														Next Reminder Date
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+													</th>
+
+													<th>
+														Plan
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+													</th>
+
 
 													
 													
@@ -297,7 +255,11 @@
 													<td>{{item.vehicle_model}}</td>
 													<td>{{item.vehicle_make}}</td>
 													<td>{{item.vehicle_type}}</td>
-													
+													<td>{{item.installation_date}}</td>
+													<td>{{item.reminder_date}}</td>
+													<td>{{item.next_reminder_date}}</td>
+													<td>{{item.plan}}</td>
+												
 													
 													
 													
