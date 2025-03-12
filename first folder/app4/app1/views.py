@@ -1,45 +1,36 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
-from app1.models import add_customer,add_enquiry,add_gps,add_insurance
+from app1.models import customer_master,customer_details,add_enquiry,add_gps,add_insurance
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 
 
 # Create your views here.
-def add_cust(request):
-        if request.method =='POST':
-              name=request.POST['name']
-              customer=request.POST['customer_id']
-              phone=request.POST['phone']
-              email=request.POST['email']
-              address=request.POST['address']
-              vehicle_no=request.POST['vehicle_no']
-              insurance_id=request.POST['insurance id']
-              date=request.POST['date']
-              vehicle_type=request.POST['vehicle type']
-              policy_type=request.POST['policy type']
-              policy_amount=request.POST['policy Amount']
-              start_date=request.POST['insurance Start Date']
-              end_date=request.POST['insurance End Date']
-              reminder_date=request.POST['reminder Date']
-              add_customer.objects.create(name=name,customer_id=customer,phone=phone,email=email,address=address,vehicle_no=vehicle_no,insurance_id=insurance_id,date=date,vehicle_type=vehicle_type,policy_type=policy_type,policy_amount=policy_amount,insurance_start_date=start_date,insurance_end_date=end_date,reminder_date=reminder_date)     
-              return redirect("add_customer")
-        last_customer = add_customer.objects.order_by('-customer_id').first()
+def custmas(request):
+        if request.method=='POST':
+                customer_id=request.POST['customer_id']
+                name=request.POST['name']
+                phone=request.POST['phone']
+                email_id=request.POST['email']
+                address=request.POST['address']
+                customer_master.objects.create(customer_name=name,customer_id=customer_id,phone=phone)
+                customer_details.objects.create(customer_name=name,customer_id=customer_id,phone=phone,email_id=email_id,address=address)
+                return redirect('list_customer')
+        last_customer = customer_details.objects.order_by('-customer_id').first()
         if last_customer:
-            last_id = int(last_customer.customer_id[4:])  # Extract the numeric part
-            new_id = f"SSDC{last_id + 1:04d}"
-            print('*****',new_id)
+                last_id = int(last_customer.customer_id[4:])  # Extract the numeric part
+                new_id = f"CUST{last_id + 1:04d}"
+                print(new_id)
         else:
-            new_id = "SSDC0001"
+                new_id = "CUST0001"
         context={'new_id':new_id}
-              
-        return render(request,'add_customer.html',context)
+        return render(request,"add_customer.html",context)
 
+       
 def list_customer(request):
-        data=add_customer.objects.all()
+        data=customer_details.objects.filter(status=1)
         context={'sent':data}
         return render(request,'list_customer.html',context)
-
 @login_required
 def add_enquiries(request):
         if request.method =='POST':
@@ -66,18 +57,29 @@ def list_enquiry(request):
 @login_required
 def add_gps_management(request):
         if request.method =='POST':
-                vehicle_id=request.POST['vehicle_id']
-                vehicle_model=request.POST['vehicle_model']
+                gps_id=request.POST['gps_id']
+                customer_name=request.POST['customer_name']
+                imei_no=request.POST['imei_no']
                 vehicle_registration_no=request.POST['vehicle_registration_no']
-                vehicle_type=request.POST['vehicle_type']
+                vehicle_model=request.POST['vehicle_model']
                 vehicle_make=request.POST['vehicle_make']
-                add_gps.objects.create(vehicle_id=vehicle_id,vehicle_model=vehicle_model,vehicle_registration_no=vehicle_registration_no,vehicle_type=vehicle_type,vehicle_make=vehicle_make)
+                vehicle_type=request.POST['vehicle_type']
+                add_gps.objects.create(gps_id=gps_id,customer_name=customer_name,imei_no=imei_no,vehicle_registration_no=vehicle_registration_no,vehicle_model=vehicle_model,vehicle_make=vehicle_make,vehicle_type=vehicle_type)
+                return redirect('list_gps') 
+        orderby_id=add_gps.objects.order_by('-gps_id').first()
+        if orderby_id:
+                old_id=int(orderby_id.gps_id[3:])
+                fresh_id=f"GPS{old_id+1:04d}"
+                print(fresh_id)
+        else:
+                fresh_id="GPS0001"
+        context={'fresh_id':fresh_id}
+        return render(request,"add_gps.html",context)
 
-        return render(request,'add_gps.html') 
 def list_gps_management(request):
-        content=add_gps.objects.all()
+        content=add_gps.objects.filter(status=1)
         context={'sent':content}
-        return render(request,'list_gps.html',context)  
+        return render(request,'list_gps.html',context)
  
 def add_sign_class(request):
         if request.method =='POST':
@@ -96,7 +98,7 @@ def sign_out(request):
         return redirect('class')
 
 def city_autocomplete(request):
-    data = add_customer.objects.all()
+    data = customer_master.objects.all()
     context = {'sent':data}
     # Add_Insurance;.objects.create(invoice_number = 1, customer_name = "Test", date = "25-10-2001", total_amount = 1000)
 
@@ -115,16 +117,15 @@ def add_insurancesss(request):
                 vehicle_type=request.POST['vehicle_type']
                 expiry_date = request.POST['expiry_date']
                 start_date=request.POST['start_date']
-                end_date=request.POST['end_date']
+                end_date=request.POST['end_date'] 
                 daa = add_insurance.objects.create(name=name,customer_id=customer_id,phone=phone,registration_no=registration_no,vehicle_model=vehicle_model,year=year,policy_no=policy_no,insurance_name=insurance_name,vehicle_type=vehicle_type,expiry_date=expiry_date,start_date=start_date,end_date=end_date)
         
-        data11=add_customer.objects.all()
+        data11=customer_master.objects.all()
         context={'data':data11}
         return render(request,'add_insurance.html',context)
+
 
 def list_insurance(request):
         part=add_insurance.objects.all()
         concept={'sent':part}
         return render(request,'list_insurance.html',concept)
-
-

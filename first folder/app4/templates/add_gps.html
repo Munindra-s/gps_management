@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 	<meta charset="utf-8">
@@ -10,37 +11,38 @@
 	<!-- <base href="/"> -->
 
 	<title>SSD</title>
-	
+
 	{% load static %}
 	<link rel="icon" type="image/x-icon" href="{% static 'images/SS_LOGO.png' %}">
 
-<!-- Font Styles -->
-<link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}">
-<link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
+	<!-- Font Styles -->
+	<link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
 
-<!-- Plugins -->
-<link rel="stylesheet" href="{% static 'styles/plugins/c3.css' %}">
-<link rel="stylesheet" href="{% static 'styles/plugins/waves.css' %}">
-<link rel="stylesheet" href="{% static 'styles/plugins/perfect_scrollbar.css' %}">
+	<!-- Plugins -->
+	<link rel="stylesheet" href="{% static 'styles/plugins/c3.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/plugins/waves.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/plugins/perfect_scrollbar.css' %}">
 
-<!-- CSS Stylesheets -->
-<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'styles/main.min.css' %}">
-
-
+	<!-- CSS Stylesheets -->
+	<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/main.min.css' %}">
 
 
 
-<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
- 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300' rel='stylesheet' type='text/css'>
+
+
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300' rel='stylesheet' type='text/css'>
 
 	<!-- Match Media polyfill for IE9 -->
-	<!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]--> 
+	<!--[if IE 9]> <script src="scripts/ie/matchMedia.js"></script>  <![endif]-->
 
-	
+
 </head>
+
 <body id="app" class="app off-canvas">
-	
+
 	<!-- header -->
 	<header class="site-head" id="site-head">
 		<ul class="list-unstyled left-elems">
@@ -60,11 +62,11 @@
 			</li> <!-- #end site-logo -->
 
 
-			
+
 		</ul>
 
 		<ul class="list-unstyled right-elems">
-			
+
 
 
 		</ul>
@@ -88,7 +90,7 @@
 			<!-- Site nav (vertical) -->
 
 			<nav class="site-nav clearfix" role="navigation">
-				
+
 
 				<!-- navigation -->
 				<ul class="list-unstyled clearfix nav-list mb15">
@@ -144,7 +146,7 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="{% url "" %}">Add Material</a></li> {% endcomment %}
+							{% comment %} <li><a href="#">Add Material</a></li> {% endcomment %}
 							<li><a href="#">List Inward</a></li>
 						</ul>
 					</li>
@@ -195,8 +197,8 @@
 						</ul>
 					</li>
 
-					
-					
+
+
 				</ul> <!-- #end navigation -->
 			</nav>
 
@@ -211,78 +213,89 @@
 					<div class="panel-heading">Gps_management</div>
 					{% if messages %}
 
-        {% for message in messages %}
-        <script type="text/javascript">
-            alert('{{ message }}');
-        </script>
-        {% endfor %}
-        
-        {% endif %}
+					{% for message in messages %}
+					<script type="text/javascript">
+						alert('{{ message }}');
+					</script>
+					{% endfor %}
+
+					{% endif %}
 					<div class="panel-body">
-						<form id='form' class="form-horizontal"  method="POST">
+						<form id='form' class="form-horizontal" method="POST">
 							{% csrf_token %}
-							 <!-- form horizontal acts as a row -->
+							<!-- form horizontal acts as a row -->
 							<!-- Customer Id -->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Gps device IMEI no</label>
-								<div class="col-md-9">
-									<input type="number" name="vehicle_id" class="form-control" placeholder="cutomerid" >
-								</div>
-								
-							</div>
-							<!-- Name -->
-							<div class="form-group">
-								<label class="col-md-3 control-label">vehicle registration no</label>
-								<div class="col-md-9">
-									<input type="number" class="form-control" name="vehicle_registration_no" placeholder="Name" required>
-								</div>
-								
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">vehicle model</label>
-								<div class="col-md-9">
-									<input type="date" class="form-control" placeholder="vehicle_model" name="vehicle_model" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">vehicle make</label>
-								<div class="col-md-9">
-									<input type="date" class="form-control" name="vehicle_make" placeholder="manufacturing_year" required>
-								</div>
-							</div>
-							
-							
 
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label">Vehicle Type</label>
-								<div class="col-md-9">
-									<select class="form-control" name="vehicle_type" required>
-										<option value="">Select Vehicle Type</option>
-										<option value="car">Tractor</option>
-										<option value="bike">Bus</option>
-										<option value="truck">Truck</option>
-										<!-- Add more options as needed -->
-									</select>
-								</div>
-							</div>
-                            
+							    <div class="form-group">
+								    <label class="col-md-3 control-label">GPS Id</label>
+								    <div class="col-md-9">
+									     <input type="text" class="form-control" name="gps_id" placeholder="GPS id" value="{{fresh_id}}" readonly required>
+								    </div>
+							    </div>
 
-							
-							
-							</div>
-							
+								<div class="form-group">
+									<label class="col-md-3 control-label">Customer Name</label>
+									<div class="col-md-9">
+										 <input type="text" class="form-control" name="customer_name" placeholder="Name" required>
+									</div>
+								</div>	
 
-							
-							
-							
-							
-							
-                           
-                            	<div class="clearfix center">
-								    
-							</div>
-							
+									<div class="form-group">
+										<label class="col-md-3 control-label">GPS device IMEI no</label>
+										<div class="col-md-9">
+											<input type="number" name="imei_no" class="form-control"
+												placeholder="IMEI no." required>
+										</div>
+
+									</div>
+									<!-- Name -->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Vehicle Registration no</label>
+										<div class="col-md-9">
+											<input type="number" class="form-control" name="vehicle_registration_no"
+												placeholder="Vehicle Reg no" required>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Vehicle Model</label>
+										<div class="col-md-9">
+											<input type="date" class="form-control" placeholder="Vehicle model"
+												name="vehicle_model" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Vehicle Make</label>
+										<div class="col-md-9">
+											<input type="date" class="form-control" name="vehicle_make"
+												placeholder="manufacturing year" required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label">Vehicle Type</label>
+										<div class="col-md-9">
+											<select class="form-control" name="vehicle_type" required>
+												<option value="">Select Vehicle Type</option>
+												<option value="bike">Bike</option>
+												<option value="car">Car</option>
+												<option value="bus">Bus</option>
+												<option value="truck">Truck</option>
+												<option value="tractor">Tractor</option>
+												<!-- Add more options as needed -->
+											</select>
+										</div>
+									</div>	
+										<br>
+
+
+
+
+										<div class="clearfix center">
+											<center><button class="btn btn-primary mr5" type="submit"
+													id="submitButton">Submit</button></center>
+										</div>
+
 						</form>
 					</div>
 				</div>
@@ -298,19 +311,19 @@
 				<div class="page-wrap">
 
 
-					
+
 
 				</div> <!-- #end page-wrap -->
 			</div>
 			<!-- #end dashboard page -->
 		</div>
 
-		
+
 	</div> <!-- #end main-container -->
-	
+
 
 	<!-- theme settings -->
-	<div class="site-settings clearfix hidden-xs" >
+	<div class="site-settings clearfix hidden-xs">
 		<div class="settings clearfix">
 			<div class="trigger ion ion-settings left"></div>
 			<div class="wrapper left">
@@ -319,19 +332,19 @@
 						<div class="left small">Nav Horizontal</div>
 						<div class="md-switch right">
 							<label>
-								<input type="checkbox" id="navHorizontal"> 
-								<span>&nbsp;</span> 
+								<input type="checkbox" id="navHorizontal">
+								<span>&nbsp;</span>
 							</label>
 						</div>
-						
-						
+
+
 					</li>
 					<li class="clearfix mb10">
 						<div class="left small">Fixed Header</div>
 						<div class="md-switch right">
 							<label>
-								<input type="checkbox"  id="fixedHeader"> 
-								<span>&nbsp;</span> 
+								<input type="checkbox" id="fixedHeader">
+								<span>&nbsp;</span>
 							</label>
 						</div>
 					</li>
@@ -339,13 +352,13 @@
 						<div class="left small">Nav Full</div>
 						<div class="md-switch right">
 							<label>
-								<input type="checkbox"  id="navFull"> 
-								<span>&nbsp;</span> 
+								<input type="checkbox" id="navFull">
+								<span>&nbsp;</span>
 							</label>
 						</div>
 					</li>
 				</ul>
-				<hr/>
+				<hr />
 				<ul class="themes list-unstyled" id="themeColor">
 					<li data-theme="theme-zero" class="active"></li>
 					<li data-theme="theme-one"></li>
@@ -362,13 +375,13 @@
 	<!-- #end theme settings -->
 
 
-	
+
 
 	<!-- Dev only -->
 	<!-- Vendors -->
 	{% load static %}
 
-	
+
 	<script src="{% static 'scripts/vendors.js' %}"></script>
 	<script src="{% static 'scripts/plugins/d3.min.js' %}"></script>
 	<script src="{% static 'scripts/plugins/c3.min.js' %}"></script>
@@ -381,35 +394,36 @@
 	<script src="{% static 'scripts/app.js' %}"></script>
 	<script src="{% static 'scripts/index.init.js' %}"></script>
 
-	{% comment %} <script>
+	{% comment %}
+	<script>
 		// Example list of existing phone numbers (this can come from a database)
 		const existingPhoneNumbers = [
 			{% for num in phone %}
-			"{{num.Phone_No}}",
+		"{{num.Phone_No}}",
 			{% endfor %}
 		];
 		const submitButton = document.getElementById("submitButton");
-	
+
 		console.log(existingPhoneNumbers);
-	
+
 		document.getElementById("phone").addEventListener("blur", function () {
 			let enteredPhone = this.value.trim(); // Get input value and remove extra spaces
 			let errorSpan = document.getElementById("phoneError");
-	
+
 			if (enteredPhone.length !== 10 || isNaN(enteredPhone)) {
 				errorSpan.textContent = "Enter a valid 10-digit phone number";
 				errorSpan.style.color = "red";
 				this.style.borderColor = "red";
 				submitButton.disabled = true;
 				alert("Enter a valid 10-digit phone number")
-			} 
+			}
 			else if (existingPhoneNumbers.includes(enteredPhone)) {
 				errorSpan.textContent = "Phone number already exists!";
 				errorSpan.style.color = "red";
 				this.style.borderColor = "red";
 				submitButton.disabled = true;
 				alert("Phone number already exists!")
-			} 
+			}
 			else {
 				errorSpan.textContent = "";
 				this.style.borderColor = "green";
@@ -424,34 +438,34 @@
 		// Example list of existing phone numbers (this can come from a database)
 		const existingPhoneNumbers = [
 			{% for num in phone %}
-			"{{num.Phone_No}}--{{num.Customer_Id}}--{{num.Customer_Name}}",
+		"{{num.Phone_No}}--{{num.Customer_Id}}--{{num.Customer_Name}}",
 			{% endfor %}
 		];
 		const submitButton = document.getElementById("submitButton");
-	
-	
+
+
 		document.getElementById("phone").addEventListener("blur", function () {
 			let enteredPhone = this.value.trim(); // Get input value and remove extra spaces
 			let errorSpan = document.getElementById("phoneError");
-	
+
 			if (enteredPhone.length !== 10 || isNaN(enteredPhone)) {
 				errorSpan.textContent = "Enter a valid 10-digit phone number";
 				errorSpan.style.color = "red";
 				this.style.borderColor = "red";
 				submitButton.disabled = true;
 				{% comment %} alert("Enter a valid 10-digit phone number"); {% endcomment %}
-			} 
+			}
 			else {
 				// Check if the entered phone number exists in the array
 				let matchedPhone = existingPhoneNumbers.find(phone => phone.startsWith(enteredPhone));
-	
+
 				if (matchedPhone) {
 					errorSpan.textContent = `${matchedPhone} already exists!`;
 					errorSpan.style.color = "red";
 					this.style.borderColor = "red";
 					submitButton.disabled = true;
 					alert(`${matchedPhone} already exists!`);
-				} 
+				}
 				else {
 					errorSpan.textContent = "";
 					this.style.borderColor = "green";
@@ -460,6 +474,7 @@
 			}
 		});
 	</script>
-	
+
 </body>
+
 </html>

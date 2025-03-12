@@ -107,12 +107,12 @@
 					<li>
 						<a href="javascript:;">
 							<i class="icon ion-md-people"></i>
-							<span class="text">Gps Management</span>
+							<span class="text">GPS Management</span>
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
 							<li><a href="#">Add Gps</a></li>
-							<li><a href="#}">List Gps</a></li>
+							<li><a href="#">List Gps</a></li>
 						</ul>
 					</li>
 					<li>
@@ -122,8 +122,8 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="}">Add Employee</a></li>
-							<li><a href="">List Employee</a></li>
+							<li><a href="#">Add Employee</a></li>
+							<li><a href="#">List Employee</a></li>
 						</ul>
 					</li>
 					<li>
@@ -144,7 +144,7 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="{% url "addmaterial" %}">Add Material</a></li> {% endcomment %}
+							{% comment %} <li><a href="#">Add Material</a></li> {% endcomment %}
 							<li><a href="#">List Inward</a></li>
 						</ul>
 					</li>
@@ -155,7 +155,7 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="{#">Add Product</a></li>
+							<li><a href="#">Add Product</a></li>
 							<li><a href="#">List Product</a></li>
 						</ul>
 					</li>
@@ -230,40 +230,59 @@
 											<thead>
 												<tr>
 													<th>
-														vehicle id
+														GPS Id
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+													</th>
+
+													<th>
+														Customer Name
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														vehicle registration no
+														GPS Device IMEI No
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														vehicle model
+														Vehicle Registration No
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
 													<th>
-														vehicle make
+														Vehicle Model
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
+
 													<th>
-														vehicle type
+														Vehicle Make
 														<div class="th">
 															<i class="fa fa-caret-up icon-up"></i>
 															<i class="fa fa-caret-down icon-down"></i>
 														</div>
 													</th>
+
+													<th>
+														Vehicle Type
+														<div class="th">
+															<i class="fa fa-caret-up icon-up"></i>
+															<i class="fa fa-caret-down icon-down"></i>
+														</div>
+													</th>
+
+
 													
 													
 												</tr>
@@ -271,11 +290,14 @@
 											<tbody>
 												{% for item in sent  %}
 												<tr>
-													<td>{{item.vehicle_id}}</td>
+													<td>{{item.gps_id}}</td>
+													<td>{{item.customer_name}}</td>
+													<td>{{item.imei_no}}</td>
 													<td>{{item.vehicle_registration_no}}</td>
 													<td>{{item.vehicle_model}}</td>
 													<td>{{item.vehicle_make}}</td>
 													<td>{{item.vehicle_type}}</td>
+													
 													
 													
 													

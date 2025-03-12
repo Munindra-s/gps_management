@@ -111,8 +111,8 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="{% url "add_customer" %}">Add Customer</a></li>
-							<li><a href="{% url "list_customer" %}">List Customer</a></li>
+							<li><a href="#">Add Customer</a></li>
+							<li><a href="#">List Customer</a></li>
 						</ul>
 					</li>
 					<li>
@@ -122,19 +122,19 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="{% url "add_enquiry" %}">Add Enquiry</a></li>
-							<li><a href="{% url "list_enquiry" %}">List Enquiry</a></li>
+							<li><a href="#">Add Enquiry</a></li>
+							<li><a href="#">List Enquiry</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="javascript:;">
 							<i class="icon ion-md-people"></i>
-							<span class="text">Gps Management</span>
+							<span class="text">GPS Management</span>
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							<li><a href="{% url "add_gps" %}">add gps</a></li>
-							<li><a href="{% url "list_gps" %}">List Gps</a></li>
+							<li><a href="#">Add gps</a></li>
+							<li><a href="#">List Gps</a></li>
 						</ul>
 					</li>
 					<li>
@@ -144,9 +144,9 @@
 							{% comment %} <i class="icon ion-md-arrow"></i> {% endcomment %}
 						</a>
 						<ul class="inner-drop list-unstyled">
-							{% comment %} <li><a href="{% url "" %}">Add Material</a></li> {% endcomment %}
-							<li><a href="{% url "insurance"%}">add insurance</a></li>
-							<li><a href="">List insurance</a></li>
+							{% comment %} <li><a href="#">Add Material</a></li> {% endcomment %}
+							<li><a href="#">Add insurance</a></li>
+							<li><a href="#">List insurance</a></li>
 						</ul>
 					</li>
 					<li>
@@ -209,7 +209,7 @@
 			<!-- col-left -->
 			<div class="col-sm-12 col-md-11">
 				<div class="panel panel-default panel-hovered panel-stacked mb30">
-					<div class="panel-heading">customer_management</div>
+					<div class="panel-heading">Customer Management</div>
 					{% if messages %}
 
         {% for message in messages %}
@@ -227,14 +227,15 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">Customer Id </label>
 								<div class="col-md-9">
-									<input type="text" name="customer_id" class="form-control" placeholder="cutomerid" readonly value='{{new_id}}' >
+
+									<input type="text" name="customer_id" class="form-control" placeholder="Enter your id" value="{{new_id}}" required readonly>
 								</div>
 							</div>
 							<!-- Name -->
 							<div class="form-group">
 								<label class="col-md-3 control-label">Name</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="name" placeholder="Name" required>
+									<input type="text" class="form-control" name="name" placeholder="Enter your Name" required>
 								</div>
 								
 							</div>
@@ -243,7 +244,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">Phone</label>
 								<div class="col-md-9">
-									<input type="number" class="form-control" placeholder="Phone No." id="phone" name="phone" required>
+									<input type="number" class="form-control" placeholder="Enter Phone No." id="phone" name="phone" required>
 									<span id="phoneError"></span>
 									{% comment %} <p class="text-danger text-right xsmall">Phone</p> {% endcomment %}
 								</div>
@@ -253,7 +254,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">Email</label>
 								<div class="col-md-9">
-									<input type="email" class="form-control" placeholder="Email" name="email" required>
+									<input type="email" class="form-control" placeholder="Enter Email id" name="email" required>
 								</div>
 							</div>
 
@@ -263,87 +264,16 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">Address</label>
 								<div class="col-md-9">
-									<textarea rows="3" class="form-control resize-v" placeholder="Address" name="address" required></textarea>
+									<textarea rows="3" class="form-control resize-v" placeholder="Enter Address" name="address" required></textarea>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Insurance ID</label>
-								<div class="col-md-9">
-									<input type="number" class="form-control" name="insurance id" placeholder="Insurance ID" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label">Vehicle No.</label>
-								<div class="col-md-9">
-									<input type="text" class="form-control" name="vehicle_no" placeholder="Vehicle no." required>
-								</div>
-							</div>
-							
-							
-
-							<div class="form-group">
-								<label class="col-md-3 control-label">create Date</label>
-								<div class="col-md-9">
-									<input type="date" class="form-control" name="date" placeholder="date" required>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label">Vehicle Type</label>
-								<div class="col-md-9">
-									<select class="form-control" name="vehicle type" required>
-										<option value="">Select Vehicle Type</option>
-										<option value="Own vehicle">Own vehicle</option>
-										<option value="Travel vehicle">Travel vehicle</option>
-										
-										<!-- Add more options as needed -->
-									</select>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-3 control-label">Policy Type</label>
-								<div class="col-md-9">
-									<select class="form-control" name="policy type" required>
-										<option value="">Select Policy Type</option>
-										<option value="TP">TP</option>
-										<option value="OP">OP</option>
-										
-										<!-- Add more options as needed -->
-									</select>
-								</div>
-							</div>
-						
-<div class="form-group">
-<label class="col-md-3 control-label">Policy Amount</label>
-<div class="col-md-9">
-<input type="number" name="policy Amount" class="form-control" placeholder="policyAmount" >
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-3 control-label">Insurance Start Date</label>
-<div class="col-md-9">
-<input type="date" name="insurance Start Date" class="form-control" placeholder="insuranceStartDate" >
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-3 control-label">Insurance End Date</label>
-<div class="col-md-9">
-<input type="date" name="insurance End Date" class="form-control" placeholder="insuranceEndDate" >
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-3 control-label">Reminder Date</label>
-<div class="col-md-9">
-<input type="date" Name="reminder Date" class="form-control" placeholder="reminderDate" >
-</div>
 
 							<div class="clearfix center">
 								<button class="btn btn-primary mr5" type="submit" id="submitButton">Submit</button>
 							</div>
 							
 						</form>
-					</div>
+					</div> 
 				</div>
 			</div> <!-- #end col-left -->
 

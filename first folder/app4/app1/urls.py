@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 urlpatterns =[
-    path('add_customer/',views.add_cust,name='add_customer'),
+    path('customer',views.custmas,name='customer'),  
     path('list_customer/',views.list_customer,name='list_customer'),
     path('add_enquiry/',views.add_enquiries,name='add_enquiry'),
     path('list_enquiry/',views.list_enquiry,name='list_enquiry'),
@@ -12,5 +12,4 @@ urlpatterns =[
     path('auto/',views.city_autocomplete,name='auto'), 
     path('insurance/',views.add_insurancesss,name='insurance'),
     path('path_insurance/',views.list_insurance,name='path_insurance')
-    
-]
+]    
