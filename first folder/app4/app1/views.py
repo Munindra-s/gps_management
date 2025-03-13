@@ -44,7 +44,7 @@ def add_details(request):
               customer_details.objects.create(name=name,customer_id=customer,phone=phone,email=email,address=address,)   
               
               
-@login_required
+
 def add_enquiries(request):
         if request.method =='POST':
                 name=request.POST['name']
@@ -78,7 +78,7 @@ def list_enquiry(request):
         value=enquiry_details.objects.all()
         context={'sent':value}
         return render(request,'list_enquiry.html',context)
-@login_required
+
 def add_gps_management(request):
         if request.method =='POST':
                 Gps_device_IMEI_no=request.POST['Gps_device_IMEI_no']
